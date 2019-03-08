@@ -3,7 +3,13 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <h1>vue-simple-countdown</h1>
 
-    <v-countdown></v-countdown>
+    <div class="countdown-box">
+      <strong>
+        <v-countdown :end="endTime"></v-countdown>
+      </strong>
+
+      to {{ endTime }}
+    </div>
 
     <footer>
       <p>
@@ -34,8 +40,15 @@ import vCountdown from './components/Countdown'
 
 export default {
   name: 'app',
+
   components: {
     vCountdown
+  },
+
+  data () {
+    return {
+      endTime: 'March 9 2029 16:07:05 GMT+0100'
+    }
   }
 }
 </script>
@@ -48,6 +61,12 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  .countdown-box {
+    display: inline-block;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #2c3e50;
   }
   footer {
     margin-top: 3rem;
