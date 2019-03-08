@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <h1>vue-simple-countdown</h1>
 
-    -- demo component here --
+    <v-countdown></v-countdown>
 
     <footer>
       <p>
@@ -30,9 +30,13 @@
 </template>
 
 <script>
+import vCountdown from './components/Countdown'
+
 export default {
   name: 'app',
-  components: {}
+  components: {
+    vCountdown
+  }
 }
 </script>
 
