@@ -65,9 +65,11 @@ export default {
   },
 
   created () {
-    setInterval(() => {
+    let timerId = setInterval(() => {
       this.now = new Date()
     }, 1000)
+
+    this.$on('finished', () => clearInterval(timerId))
   }
 }
 </script>

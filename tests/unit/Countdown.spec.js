@@ -49,6 +49,16 @@ describe('Countdown.vue', () => {
     expectEvent('finished')
   })
 
+  it('clears the interval once completed', () => {
+    setEndTime(10, 'seconds')
+
+    clock.tick(5000)
+    expect(wrapper.vm.now.getSeconds()).to.equal(5)
+
+    clock.tick(15000)
+    expect(wrapper.vm.now.getSeconds()).to.equal(10) // timer stops after 10 sec.
+  })
+
   // Helper Functions
 
   let see = (text, selector) => {
