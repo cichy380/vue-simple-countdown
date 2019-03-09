@@ -39,6 +39,16 @@ describe('Countdown.vue', () => {
     see('8 seconds')
   })
 
+  it('broadcasts when the countdown is finished', () => {
+    setEndTime(1, 'seconds')
+
+    clock.tick(500)
+    notExpectEvent('finished')
+
+    clock.tick(1000)
+    expectEvent('finished')
+  })
+
   // Helper Functions
 
   let see = (text, selector) => {
@@ -51,5 +61,15 @@ describe('Countdown.vue', () => {
     let wrap = selector ? wrapper.find(selector) : wrapper
 
     wrap.setProps({ end: moment().add(amount, unit) })
+  }
+
+  let expectEvent = (eventName, selector) => {
+    let wrap = selector ? wrapper.find(selector) : wrapper
+    expect(wrap.emitted(eventName)).to.exist
+  }
+
+  let notExpectEvent = (eventName, selector) => {
+    let wrap = selector ? wrapper.find(selector) : wrapper
+    expect(wrap.emitted(eventName)).to.not.exist
   }
 })

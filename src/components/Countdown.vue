@@ -47,6 +47,10 @@ export default {
       let minutes = remaining.minutes()
       let seconds = remaining.seconds()
 
+      if (remaining.asSeconds() < 1) {
+        this.$emit('finished')
+      }
+
       return {
         showDays: days >= 1,
         days,

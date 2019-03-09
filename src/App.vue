@@ -5,10 +5,16 @@
 
     <div class="countdown-box">
       <strong>
-        <v-countdown :end="endTime"></v-countdown>
+        <v-countdown :end="endTime" @finished="countdownFinished()"></v-countdown>
       </strong>
 
       to {{ endTime }}
+    </div>
+
+    <br>
+
+    <div v-if="showAlert" class="alert">
+      Now Expired!
     </div>
 
     <footer>
@@ -47,7 +53,14 @@ export default {
 
   data () {
     return {
-      endTime: 'March 9 2029 16:07:05 GMT+0100'
+      endTime: 'March 9 2029 16:07:05 GMT+0100',
+      showAlert: false
+    }
+  },
+
+  methods: {
+    countdownFinished () {
+      this.showAlert = true
     }
   }
 }
@@ -67,6 +80,13 @@ export default {
     margin: auto;
     padding: 1rem;
     border: 1px solid #2c3e50;
+  }
+  .alert {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .5em;
+    background: red;
+    color: white;
   }
   footer {
     margin-top: 3rem;
