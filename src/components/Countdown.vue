@@ -47,7 +47,9 @@ export default {
       let minutes = remaining.minutes()
       let seconds = remaining.seconds()
 
-      if (remaining.asSeconds() < 1) {
+      console.log(remaining.asSeconds(), remaining.asSeconds() <= 0)
+      if (remaining.asSeconds() <= 0) {
+        seconds = 0
         this.$emit('finished')
       }
 
