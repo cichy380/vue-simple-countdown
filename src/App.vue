@@ -5,7 +5,13 @@
 
     <div class="countdown-box">
       <strong>
-        <v-countdown :end="endTime" @finished="countdownFinished()"></v-countdown>
+        <v-countdown :end="endTime" @finished="countdownFinished()">
+          <template v-slot:days="{ dayValue }">{{ dayValue }}d </template>
+          <template v-slot:hours="{ hourValue }">{{ hourValue }}h </template>
+          <template v-slot:minutes="{ minValue }">{{ minValue }}min </template>
+          <template v-slot:seconds="{ secValue }">{{ secValue }}sec </template>
+          yet...
+        </v-countdown>
       </strong>
 
       to {{ endTime }}

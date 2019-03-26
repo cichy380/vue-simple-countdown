@@ -1,22 +1,30 @@
 <template>
   <div class="vue-simple-countdown">
     <span v-if="remaining.showDays" class="vue-simple-countdown__days">
-      {{ remaining.days }} days
+      <slot name="days"  v-bind:dayValue="remaining.days">
+        {{ remaining.days }} days
+      </slot>
     </span>
 
     <span v-if="remaining.showHours" class="vue-simple-countdown__hours">
-      {{ remaining.hours }} hours
+      <slot name="hours"  v-bind:hourValue="remaining.hours">
+        {{ remaining.hours }} hours
+      </slot>
     </span>
 
     <span v-if="remaining.showMinutes" class="vue-simple-countdown__minutes">
-      {{ remaining.minutes }} minutes
+      <slot name="minutes"  v-bind:minValue="remaining.minutes">
+        {{ remaining.minutes }} minutes
+      </slot>
     </span>
 
     <span class="vue-simple-countdown__seconds">
-      {{ remaining.seconds }} seconds
+      <slot name="seconds"  v-bind:secValue="remaining.seconds">
+        {{ remaining.seconds }} seconds
+      </slot>
     </span>
 
-    left...
+    <slot>left...</slot>
   </div>
 </template>
 
@@ -47,7 +55,6 @@ export default {
       let minutes = remaining.minutes()
       let seconds = remaining.seconds()
 
-      console.log(remaining.asSeconds(), remaining.asSeconds() <= 0)
       if (remaining.asSeconds() <= 0) {
         seconds = 0
         this.$emit('finished')
